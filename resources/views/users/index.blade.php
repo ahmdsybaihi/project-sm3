@@ -5,97 +5,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User List</title>
     <style>
-        .body-container {
+        body {
             font-family: Arial, sans-serif;
-            background-color: #f0f0f5;
-            color: #333;
+            background-color: #f8f9fa;
             margin: 0;
             padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
         .title {
-            font-size: 2.5em;
-            color: #2d3436;
-            margin: 20px 0;
-            font-weight: bold;
-            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+            font-size: 2em;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
         }
 
         .user-list {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            max-width: 1200px;
+            justify-content: space-between;
+            gap: 15px;
         }
 
         .user-card {
-            background-color: #ffffff;
+            background-color: #fff;
+            border: 1px solid #ddd;
             border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            width: 260px;
-            transition: 0.3s;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
+            padding: 15px;
+            flex: 1 1 300px; /* Menetapkan lebar minimum */
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.2s;
         }
 
         .user-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .user-name {
-            font-size: 1.4em;
-            color: #2d3436;
+            font-size: 1.2em;
             font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
         }
 
         .user-info {
-            font-size: 1em;
-            color: #636e72;
-            line-height: 1.6;
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 4px;
         }
 
         .user-info a {
-            color: #0984e3;
+            color: #3498db;
             text-decoration: none;
         }
 
         .user-info a:hover {
             text-decoration: underline;
         }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .user-list {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .user-card {
-                width: 90%;
-            }
-        }
     </style>
 </head>
-<body class="body-container">
-    <div class="title">User List</div>
-    <div class="user-list">
-        @foreach ($users as $user)
-        <div class="user-card">
-            <div class="user-name">{{ $user['name'] }} ({{ $user['username'] }})</div>
-            <div class="user-info"><strong>Email:</strong> {{ $user['email'] }}</div>
-            <div class="user-info"><strong>Phone:</strong> {{ $user['phone'] }}</div>
-            <div class="user-info"><strong>Website:</strong> <a href="http://{{ $user['website'] }}" target="_blank">{{ $user['website'] }}</a></div>
-            <div class="user-info"><strong>Address:</strong> {{ $user['address']['street'] }}, {{ $user['address']['suite'] }}, {{ $user['address']['city'] }}, {{ $user['address']['zipcode'] }}</div>
-            <div class="user-info"><strong>Company:</strong> {{ $user['company']['name'] }} — "{{ $user['company']['catchPhrase'] }}"</div>
+<body>
+    <div class="container">
+        <div class="title">User List</div>
+        <div class="user-list">
+            @foreach ($users as $user)
+            <div class="user-card">
+                <div class="user-name">{{ $user['name'] }} ({{ $user['username'] }})</div>
+                <div class="user-info"><strong>Email:</strong> {{ $user['email'] }}</div>
+                <div class="user-info"><strong>Phone:</strong> {{ $user['phone'] }}</div>
+                <div class="user-info"><strong>Website:</strong> <a href="http://{{ $user['website'] }}" target="_blank">{{ $user['website'] }}</a></div>
+                <div class="user-info"><strong>Address:</strong> {{ $user['address']['street'] }}, {{ $user['address']['suite'] }}, {{ $user['address']['city'] }}, {{ $user['address']['zipcode'] }}</div>
+                <div class="user-info"><strong>Company:</strong> {{ $user['company']['name'] }} — "{{ $user['company']['catchPhrase'] }}"</div>
+            </div>
+            @endforeach
         </div>
-        @endforeach
     </div>
 </body>
 </html>

@@ -13,7 +13,7 @@ class UserController extends Controller
     public function index()
     {
         // Corrected 'Http::get' and added missing comma in 'view()' function
-        $users = Http::timeout(50)->get('https://jsonplaceholder.typicode.com/users')->json();
+        $users = Http::timeout(60)->get('https://jsonplaceholder.typicode.com/users')->json();
 
 
         return view('users.index', ['users' => $users]);
